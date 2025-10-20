@@ -7,13 +7,12 @@
         Types
         Supertypes
         Rarities
-        Attacks
         Images
 
     In addition to the columns that are automatically provided when
     the models are created...
 
-    The Cards table will contain card-specific information:
+    The Card table will contain card-specific information:
         name - the name of the card
         healthpoints - the total health of the Pokemon
         card_number - the number of the card in the set
@@ -23,29 +22,23 @@
         set - the name of the set the Pokemon card comes from - foreign key to Sets
         image - the url of the Pokemon card or Set name - foreign key to Images
 
-    The Sets table will contain information about different TCG sets:
+    The Set table will contain information about different TCG sets:
         name - the name of the set
         release_date - the date the set was released
         logo - the logo of the set - foreign key to Images
     
-    The Types table contains information about a card's type (fire, water, etc):
+    The Type table contains information about a card's type (fire, water, etc):
         name - the name of the type
 
-    The Supertypes table contains information about a card's Supertype
+    The Supertype table contains information about a card's Supertype
     (either Energy, Trainer, or Pokemon):
         name - the name of the supertype
 
-    The Rarities table contains information about a card's rarity
+    The Rarity table contains information about a card's rarity
     (holographic, foil, Ultra Rare, etc):
         name - the name of the rarity
 
-    The Attacks table contains information about a card's attacks:
-        name - the name of the attack
-        damage - stored as text to allow for damage like "30+" or "X"
-        converted_energy_cost - how much it costs to use an attack
-
-    The Images table contains information about the images that are
-    displayed on the card:
+    The Image table contains urls for the image that is displayed on the card:
         image_url - the url to the image
 
 </p>

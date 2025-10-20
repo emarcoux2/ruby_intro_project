@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_142848) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_144727) do
   create_table "cards", force: :cascade do |t|
     t.string "name"
     t.integer "healthpoints"
@@ -20,6 +20,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_142848) do
     t.string "type"
     t.string "set"
     t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sets", force: :cascade do |t|
+    t.string "name"
+    t.date "release_date"
+    t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
