@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_144727) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_153456) do
   create_table "cards", force: :cascade do |t|
     t.string "name"
     t.integer "healthpoints"
     t.integer "card_number"
     t.string "supertype"
     t.string "rarity"
-    t.string "type"
+    t.string "card_type"
     t.string "set"
     t.string "image_url"
     t.datetime "created_at", null: false

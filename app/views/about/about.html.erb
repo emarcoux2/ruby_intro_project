@@ -2,12 +2,12 @@
 <p>The data being used in this project is the Pokemon TCG API.
 
     The tables being used are:
-        Cards
-        Sets
-        Types
-        Supertypes
-        Rarities
-        Images
+        Card
+        Set
+        CardType
+        Supertype
+        Rarity
+        Image
 
     In addition to the columns that are automatically provided when
     the models are created...
@@ -18,7 +18,7 @@
         card_number - the number of the card in the set
         supertype - the card's supertype - foreign key to Supertypes
         rarity - the rarity of the card - foreign key to Rarities
-        type - the type of the Pokemon - foreign key to Types
+        card_type - the type of the Pokemon - foreign key to Types
         set - the name of the set the Pokemon card comes from - foreign key to Sets
         image - the url of the Pokemon card or Set name - foreign key to Images
 
@@ -27,7 +27,7 @@
         release_date - the date the set was released
         logo - the logo of the set - foreign key to Images
     
-    The Type table contains information about a card's type (fire, water, etc):
+    The CardType table contains information about a card's type (fire, water, etc):
         name - the name of the type
 
     The Supertype table contains information about a card's Supertype
