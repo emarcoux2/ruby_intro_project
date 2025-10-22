@@ -1,45 +1,64 @@
 <h1 class="title is-1">About This Project</h1>
 <p>The data being used in this project is the Pokemon TCG API. I'm using several
-    sources from this API: Cards, Sets, Types, Supertypes, and Rarities.
+    endpoints from this API: Cards, Sets, Types, Supertypes, and Rarities. These
+    data sources are all related because they come from one API
 
     The tables being used are:
-        Card
-        Set
-        CardType
-        Supertype
-        Rarity
-        Image
+        Cards
+        Sets
+        Attacks
+        CardTypes
+        Supertypes
+        Rarities
+        Images
 
     In addition to the columns that are automatically provided when
     the models are created...
 
-    The Card table will contain card-specific information:
+    The Cards table will contain card-specific information:
         name - the name of the card
         healthpoints - the total health of the Pokemon
+        attacks - which attacks the Pokemon can use
         card_number - the number of the card in the set
         supertype - the card's supertype - foreign key to Supertypes
         rarity - the rarity of the card - foreign key to Rarities
         card_type - the type of the Pokemon - foreign key to Types
         set - the name of the set the Pokemon card comes from - foreign key to Sets
-        image - the url of the Pokemon card or Set name - foreign key to Images
+        image_url - the url of the Pokemon card or Set name - foreign key to Images
 
-    The Set table will contain information about different TCG sets:
+    The Sets table will contain information about different TCG sets:
         name - the name of the set
         release_date - the date the set was released
         logo - the logo of the set - foreign key to Images
+
+    The Attacks table will contain information about the attacks of a Pokemon:
+        name - the name of the attack
+        converted_energy_cost - how much energy in total is needed to use the attack
+        damage - how much damage the attack does
+        text - a description of what the attack does
     
-    The CardType table contains information about a card's type (fire, water, etc):
+    The CardTypes table contains information about a card's type (fire, water, etc):
         name - the name of the type
 
-    The Supertype table contains information about a card's Supertype
+    The Supertypes table contains information about a card's Supertype
     (either Energy, Trainer, or Pokemon):
         name - the name of the supertype
 
-    The Rarity table contains information about a card's rarity
+    The Rarities table contains information about a card's rarity
     (holographic, foil, Ultra Rare, etc):
         name - the name of the rarity
 
-    The Image table contains urls for the image that is displayed on the card:
+    The Images table contains urls for the image that is displayed on the card:
         image_url - the url to the image
-
+</p>
+<p>
+    <iframe 
+        width="768" 
+        height="432" 
+        src="https://miro.com/app/live-embed/uXjVLURfI5E=/?embedMode=view_only_without_ui&moveToViewport=-337,88,1046,636&embedId=318204339509" 
+        frameborder="0" 
+        scrolling="no" 
+        allow="fullscreen; clipboard-read; clipboard-write" 
+        allowfullscreen>
+    </iframe>
 </p>

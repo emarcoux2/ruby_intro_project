@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "cards#index"
   get "images/index"
   get "images/show"
   get "supertypes/index"
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
   get "rarities/show"
   get "card_types/index"
   get "card_types/show"
-  get "cards/index"
   get "cards/show"
   get "about" => "about#about", as: "about"
   get "up" => "rails/health#show", as: :rails_health_check
