@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_154422) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_22_010518) do
   create_table "card_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -55,4 +55,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_154422) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "cards", "card_types", column: "card_type"
+  add_foreign_key "cards", "images", column: "image_url"
+  add_foreign_key "cards", "rarities", column: "rarity"
+  add_foreign_key "cards", "sets", column: "set"
+  add_foreign_key "cards", "supertypes", column: "supertype"
 end
