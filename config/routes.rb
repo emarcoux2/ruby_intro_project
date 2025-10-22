@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "attacks/index"
+  get "attacks/show"
   root to: "cards#index"
   get "images/index"
   get "images/show"
