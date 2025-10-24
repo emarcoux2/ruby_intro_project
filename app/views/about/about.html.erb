@@ -14,7 +14,7 @@
         <li>Sets</li>
         <li>Attacks</li>
         <li>CardAttacks</li>
-        <li>CardTypes</li>
+        <li>PokemonTypes</li>
         <li>Supertypes</li>
         <li>Rarities</li>
         <li>Images</li>
@@ -32,7 +32,7 @@
         <li><strong>card_number</strong> – the number of the card in the set</li>
         <li><strong>supertype</strong> – the card's supertype (FK to Supertypes)</li>
         <li><strong>rarity</strong> – the rarity of the card (FK to Rarities)</li>
-        <li><strong>card_type</strong> – the type of the Pokémon (FK to Types)</li>
+        <li><strong>pokemon_type</strong> – the type of the Pokémon (FK to PokemonTypes)</li>
         <li><strong>set</strong> – the set the Pokémon card comes from (FK to Sets)</li>
         <li><strong>image_url</strong> – the URL of the Pokémon card image (FK to Images)</li>
     </ul>
@@ -59,7 +59,7 @@
         <li><strong>text</strong> – description of what the attack does</li>
     </ul>
 
-    <h3 class="title is-4 mt-4 ml-2">CardTypes Table</h3>
+    <h3 class="title is-4 mt-4 ml-2">PokemonTypes Table</h3>
     <ul>
         <li><strong>name</strong> – the name of the type (Fire, Water, etc.)</li>
     </ul>
