@@ -1,4 +1,4 @@
 class Image < ApplicationRecord
-  has_one :card, :set
+  has_many :card, :set
   validates :image_url, presence: true
 end

@@ -1,3 +1,4 @@
 class Attack < ApplicationRecord
-  belongs_to :cards
+  has_many :card_attacks
+  has_many :cards, through: :card_attacks
 end

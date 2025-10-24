@@ -1,4 +1,4 @@
 class Supertype < ApplicationRecord
-  has_one :card
+  has_many :card
   validates :name, presence: true
 end
