@@ -1,64 +1,85 @@
-<h1 class="title is-1">About This Project</h1>
-<p>The data being used in this project is the Pokemon TCG API. I'm using several
-    endpoints from this API: Cards, Sets, Types, Supertypes, and Rarities. These
-    data sources are all related because they come from one API
+<div class="content">
+    <h1 class="title is-1 ml-2">About This Project</h1>
 
-    The tables being used are:
-        Cards
-        Sets
-        Attacks
-        CardTypes
-        Supertypes
-        Rarities
-        Images
+    <p class="ml-5">
+    The data being used in this project is the Pokémon TCG API. I'm using several
+    endpoints from this API: <strong>Cards</strong>, <strong>Sets</strong>, 
+    <strong>Types</strong>, <strong>Supertypes</strong>, and <strong>Rarities</strong>.
+    These data sources are all related because they come from one API.
+    </p>
 
+    <h2 class="title is-3 mt-5 ml-2">Tables Used</h2>
+    <ul>
+        <li>Cards</li>
+        <li>Sets</li>
+        <li>Attacks</li>
+        <li>CardAttacks</li>
+        <li>CardTypes</li>
+        <li>Supertypes</li>
+        <li>Rarities</li>
+        <li>Images</li>
+    </ul>
+
+    <p class="mt-4 ml-5">
     In addition to the columns that are automatically provided when
-    the models are created...
+    the models are created, here’s what each table contains:
+    </p>
 
-    The Cards table will contain card-specific information:
-        name - the name of the card
-        healthpoints - the total health of the Pokemon
-        attacks - which attacks the Pokemon can use
-        card_number - the number of the card in the set
-        supertype - the card's supertype - foreign key to Supertypes
-        rarity - the rarity of the card - foreign key to Rarities
-        card_type - the type of the Pokemon - foreign key to Types
-        set - the name of the set the Pokemon card comes from - foreign key to Sets
-        image_url - the url of the Pokemon card or Set name - foreign key to Images
+    <h3 class="title is-4 mt-4 ml-2">Cards Table</h3>
+    <ul>
+        <li><strong>name</strong> – the name of the card</li>
+        <li><strong>healthpoints</strong> – the total health of the Pokémon</li>
+        <li><strong>card_number</strong> – the number of the card in the set</li>
+        <li><strong>supertype</strong> – the card's supertype (FK to Supertypes)</li>
+        <li><strong>rarity</strong> – the rarity of the card (FK to Rarities)</li>
+        <li><strong>card_type</strong> – the type of the Pokémon (FK to Types)</li>
+        <li><strong>set</strong> – the set the Pokémon card comes from (FK to Sets)</li>
+        <li><strong>image_url</strong> – the URL of the Pokémon card image (FK to Images)</li>
+    </ul>
 
-    The Sets table will contain information about different TCG sets:
-        name - the name of the set
-        release_date - the date the set was released
-        logo - the logo of the set - foreign key to Images
+    <h3 class="title is-4 mt-4 ml-2">Sets Table</h3>
+    <ul>
+        <li><strong>name</strong> – the name of the set</li>
+        <li><strong>release_date</strong> – the date the set was released</li>
+        <li><strong>logo</strong> – the logo of the set (FK to Images)</li>
+    </ul>
 
-    The Attacks table will contain information about the attacks of a Pokemon:
-        name - the name of the attack
-        converted_energy_cost - how much energy in total is needed to use the attack
-        damage - how much damage the attack does
-        text - a description of what the attack does
-    
-    The CardTypes table contains information about a card's type (fire, water, etc):
-        name - the name of the type
+    <h3 class="title is-4 mt-4 ml-2">CardAttacks Table</h3>
+    <p class="ml-5">Joiner table between Attacks and Cards (many-to-many relationship):</p>
+    <ul>
+        <li><strong>attack_id</strong> – foreign key to Attacks</li>
+        <li><strong>card_id</strong> – foreign key to Cards</li>
+    </ul>
 
-    The Supertypes table contains information about a card's Supertype
-    (either Energy, Trainer, or Pokemon):
-        name - the name of the supertype
+    <h3 class="title is-4 mt-4 ml-2">Attacks Table</h3>
+    <ul>
+        <li><strong>name</strong> – the name of the attack</li>
+        <li><strong>converted_energy_cost</strong> – total energy required</li>
+        <li><strong>damage</strong> – damage done by the attack</li>
+        <li><strong>text</strong> – description of what the attack does</li>
+    </ul>
 
-    The Rarities table contains information about a card's rarity
-    (holographic, foil, Ultra Rare, etc):
-        name - the name of the rarity
+    <h3 class="title is-4 mt-4 ml-2">CardTypes Table</h3>
+    <ul>
+        <li><strong>name</strong> – the name of the type (Fire, Water, etc.)</li>
+    </ul>
 
-    The Images table contains urls for the image that is displayed on the card:
-        image_url - the url to the image
-</p>
-<p>
-    <iframe 
-        width="768" 
-        height="432" 
-        src="https://miro.com/app/live-embed/uXjVLURfI5E=/?embedMode=view_only_without_ui&moveToViewport=-337,88,1046,636&embedId=318204339509" 
-        frameborder="0" 
-        scrolling="no" 
-        allow="fullscreen; clipboard-read; clipboard-write" 
-        allowfullscreen>
-    </iframe>
-</p>
+    <h3 class="title is-4 mt-4 ml-2">Supertypes Table</h3>
+    <ul>
+        <li><strong>name</strong> – the name of the supertype (Energy, Trainer, Pokémon)</li>
+    </ul>
+
+    <h3 class="title is-4 mt-4 ml-2">Rarities Table</h3>
+    <ul>
+        <li><strong>name</strong> – the name of the rarity (Holo, Foil, Ultra Rare, etc.)</li>
+    </ul>
+
+    <h3 class="title is-4 mt-4 ml-2">Images Table</h3>
+    <ul>
+        <li class="mb-5"><strong>image_url</strong> – the URL for the image displayed on the card</li>
+    </ul>
+
+    <p><strong class="ml-2">This project's ERD:</strong></p>
+    <p class="ml-2"><%= image_tag "ERD.png", alt: "My Project ERD" %></p>
+</div>
+
