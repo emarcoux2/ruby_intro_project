@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_27_032634) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_27_040124) do
   create_table "attacks", force: :cascade do |t|
     t.string "name"
     t.integer "converted_energy_cost"
@@ -47,12 +47,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_27_032634) do
     t.integer "supertype_id"
     t.integer "rarity_id"
     t.integer "pokemon_type_id"
-    t.integer "set_id"
+    t.integer "card_set_id"
     t.integer "image_url_id"
+    t.index ["card_set_id"], name: "index_cards_on_card_set_id"
     t.index ["image_url_id"], name: "index_cards_on_image_url_id"
     t.index ["pokemon_type_id"], name: "index_cards_on_pokemon_type_id"
     t.index ["rarity_id"], name: "index_cards_on_rarity_id"
-    t.index ["set_id"], name: "index_cards_on_set_id"
     t.index ["supertype_id"], name: "index_cards_on_supertype_id"
   end
 
@@ -83,7 +83,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_27_032634) do
   add_foreign_key "card_attacks", "attacks"
   add_foreign_key "card_attacks", "cards"
   add_foreign_key "card_sets", "images", column: "logo_id"
-  add_foreign_key "cards", "card_sets", column: "set_id"
+  add_foreign_key "cards", "card_sets"
   add_foreign_key "cards", "images", column: "image_url_id"
   add_foreign_key "cards", "pokemon_types"
   add_foreign_key "cards", "rarities"
