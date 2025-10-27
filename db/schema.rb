@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_27_021507) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_27_032634) do
   create_table "attacks", force: :cascade do |t|
     t.string "name"
     t.integer "converted_energy_cost"
     t.integer "damage"
     t.text "text"
-    t.bigint "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["card_id"], name: "index_attacks_on_card_id"
   end
 
   create_table "card_attacks", force: :cascade do |t|
@@ -82,8 +80,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_27_021507) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "attacks", "cards"
-  add_foreign_key "attacks", "cards"
   add_foreign_key "card_attacks", "attacks"
   add_foreign_key "card_attacks", "cards"
   add_foreign_key "card_sets", "images", column: "logo_id"
