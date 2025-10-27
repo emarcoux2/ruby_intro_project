@@ -1,4 +1,4 @@
 class PokemonType < ApplicationRecord
-  belongs_to :card
+  has_many :cards
   validates :name, presence: true
 end
