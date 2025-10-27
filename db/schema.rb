@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_27_012224) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_27_021507) do
   create_table "attacks", force: :cascade do |t|
     t.string "name"
     t.integer "converted_energy_cost"
@@ -34,9 +34,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_27_012224) do
   create_table "card_sets", force: :cascade do |t|
     t.string "name"
     t.date "release_date"
-    t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "logo_id"
+    t.index ["logo_id"], name: "index_card_sets_on_logo_id"
   end
 
   create_table "cards", force: :cascade do |t|
@@ -85,6 +86,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_27_012224) do
   add_foreign_key "attacks", "cards"
   add_foreign_key "card_attacks", "attacks"
   add_foreign_key "card_attacks", "cards"
+  add_foreign_key "card_sets", "images", column: "logo_id"
   add_foreign_key "cards", "card_sets", column: "set_id"
   add_foreign_key "cards", "images", column: "image_url_id"
   add_foreign_key "cards", "pokemon_types"
