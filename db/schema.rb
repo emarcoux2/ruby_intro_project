@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_24_032748) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_27_000916) do
   create_table "attacks", force: :cascade do |t|
     t.string "name"
     t.integer "converted_energy_cost"
     t.integer "damage"
     t.text "text"
-    t.integer "cards_id", null: false
+    t.bigint "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cards_id"], name: "index_attacks_on_cards_id"
+    t.index ["card_id"], name: "index_attacks_on_card_id"
   end
 
   create_table "card_attacks", force: :cascade do |t|
@@ -35,14 +35,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_24_032748) do
     t.string "name"
     t.integer "healthpoints"
     t.integer "card_number"
-    t.string "supertype"
-    t.string "rarity"
-    t.string "pokemon_type"
-    t.string "set"
-    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "attacks"
+    t.integer "supertype_id"
+    t.integer "rarity_id"
+    t.integer "pokemon_type_id"
+    t.integer "set_id"
+    t.integer "image_url_id"
+    t.index ["image_url_id"], name: "index_cards_on_image_url_id"
+    t.index ["pokemon_type_id"], name: "index_cards_on_pokemon_type_id"
+    t.index ["rarity_id"], name: "index_cards_on_rarity_id"
+    t.index ["set_id"], name: "index_cards_on_set_id"
+    t.index ["supertype_id"], name: "index_cards_on_supertype_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -77,12 +81,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_24_032748) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "attacks", "cards", column: "cards_id"
+  add_foreign_key "attacks", "cards"
+  add_foreign_key "attacks", "cards"
   add_foreign_key "card_attacks", "attacks"
   add_foreign_key "card_attacks", "cards"
-  add_foreign_key "cards", "images", column: "image_url"
-  add_foreign_key "cards", "pokemon_types", column: "pokemon_type"
-  add_foreign_key "cards", "rarities", column: "rarity"
-  add_foreign_key "cards", "sets", column: "set"
-  add_foreign_key "cards", "supertypes", column: "supertype"
+  add_foreign_key "cards", "images", column: "image_url_id"
+  add_foreign_key "cards", "pokemon_types"
+  add_foreign_key "cards", "rarities"
+  add_foreign_key "cards", "sets"
+  add_foreign_key "cards", "supertypes"
 end
