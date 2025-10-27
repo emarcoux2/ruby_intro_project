@@ -1,5 +1,5 @@
-class Set < ApplicationRecord
-  has_many :cards
+class CardSet < ApplicationRecord
+  has_many :cards, foreign_key: "set_id"
   belongs_to :logo, class_name: "Image"
   validates :name, :release_date, :logo, presence: true
 end
