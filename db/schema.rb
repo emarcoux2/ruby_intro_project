@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_27_040124) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_29_235809) do
   create_table "attacks", force: :cascade do |t|
     t.string "name"
     t.integer "converted_energy_cost"
@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_27_040124) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "logo_id"
+    t.string "series"
     t.index ["logo_id"], name: "index_card_sets_on_logo_id"
   end
 
