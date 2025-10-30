@@ -33,13 +33,14 @@
         <li><strong>supertype</strong> – the card's supertype (FK to Supertypes)</li>
         <li><strong>rarity</strong> – the rarity of the card (FK to Rarities)</li>
         <li><strong>pokemon_type</strong> – the type of the Pokémon (FK to PokemonTypes)</li>
-        <li><strong>set</strong> – the set the Pokémon card comes from (FK to Sets)</li>
+        <li><strong>card_set</strong> – the set the Pokémon card comes from (FK to Sets)</li>
         <li><strong>image_url</strong> – the URL of the Pokémon card image (FK to Images)</li>
     </ul>
 
-    <h3 class="title is-4 mt-4 ml-2">Sets Table</h3>
+    <h3 class="title is-4 mt-4 ml-2">CardSets Table</h3>
     <ul>
         <li><strong>name</strong> – the name of the set</li>
+        <li><strong>series</strong> – the series of the set</li>
         <li><strong>release_date</strong> – the date the set was released</li>
         <li><strong>logo</strong> – the logo of the set (FK to Images)</li>
     </ul>
