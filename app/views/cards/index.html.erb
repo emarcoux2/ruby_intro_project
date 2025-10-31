@@ -3,7 +3,6 @@
 <form action="<%= cards_path %>" method="get" class="mb-5 ml-3">
   <div class="field is-grouped is-grouped-multiline">
 
-    <!-- Filter by Name... -->
     <div class="control">
       <input class="input" type="text" name="name" placeholder="Search by name" value="<%= params[:name] %>">
     </div>
@@ -22,7 +21,6 @@
       </div>
     </div>
 
-    <!-- ...CardSet -->
     <div class="control">
       <div class="select">
         <select name="card_set_id">
@@ -37,7 +35,6 @@
       </div>
     </div>
 
-    <!-- ...Series -->
     <div class="control">
       <div class="select">
         <select name="series">
@@ -52,7 +49,6 @@
       </div>
     </div>
 
-    <!-- ...Rarity -->
     <div class="control">
       <div class="select">
         <select name="rarity_id">
@@ -67,7 +63,6 @@
       </div>
     </div>
 
-    <!-- ...Pokemon Type -->
     <div class="control">
       <div class="select">
         <select name="pokemon_type_id">
@@ -82,7 +77,6 @@
       </div>
     </div>
 
-    <!-- ...Supertype -->
     <div class="control">
       <div class="select">
         <select name="supertype_id">
@@ -97,7 +91,6 @@
       </div>
     </div>
 
-    <!-- ...Alphabetical Order -->
     <div class="control">
       <div class="select">
         <select name="sort">
@@ -107,7 +100,6 @@
       </div>
     </div>
 
-    <!-- Submit button -->
     <div class="control">
       <button class="button is-primary">Filter</button>
     </div>

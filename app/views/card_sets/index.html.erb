@@ -21,7 +21,6 @@
     <div class="control">
       <div class="select">
         <select name="sort">
-          <option value="">Sort by alphabetical order</option>
           <option value="name_asc" <%= 'selected' if params[:sort] == 'name_asc' %>>A → Z</option>
           <option value="name_desc" <%= 'selected' if params[:sort] == 'name_desc' %>>Z → A</option>
         </select>
@@ -31,7 +30,6 @@
     <div class="control">
       <div class="select">
         <select name="release_order">
-          <option value="">Sort by release date</option>
           <option value="newest" <%= 'selected' if params[:release_order] == 'newest' %>>Newest → Oldest</option>
           <option value="oldest" <%= 'selected' if params[:release_order] == 'oldest' %>>Oldest → Newest</option>
         </select>
