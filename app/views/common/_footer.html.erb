@@ -1,0 +1,14 @@
+<footer class="footer footer-background-color py-5">
+  <div class="container has-text-centered">
+    <ul class="is-inline-flex is-justify-content-center is-align-items-center mb-3" style="list-style: none; padding: 0; gap: 1.5rem;">
+      <% unless controller_name == "home" %>
+        <li><%= link_to "Home", root_path, class: "navbar-link" %></li>
+      <% end %>
+      <li><%= link_to "Sets", card_sets_path, class: "navbar-link" %></li>
+      <li><%= link_to "Cards", cards_path, class: "navbar-link" %></li>
+      <li><%= link_to "About", about_path, class: "navbar-link" %></li>
+    </ul>
+
+    <p class="has-text-grey">Oppositewrong © 2025</p>
+  </div>
+</footer>

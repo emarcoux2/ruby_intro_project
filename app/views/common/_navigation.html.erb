@@ -1,0 +1,12 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu is-active is-flex is-justify-content-center">
+    <ul class="navbar-item" style="display: flex; gap: 1.5rem; list-style: none;">
+      <% unless controller_name == "home" %>
+        <li><%= link_to "Home", root_path, class: "navbar-link" %></li>
+      <% end %>
+      <li><%= link_to "Sets", card_sets_path, class: "navbar-link" %></li>
+      <li><%= link_to "Cards", cards_path, class: "navbar-link" %></li>
+      <li><%= link_to "About", about_path, class: "navbar-link" %></li>
+    </ul>
+  </div>
+</nav>
