@@ -1,2 +1,169 @@
-<h1>Cards#index</h1>
-<p>Find me in app/views/cards/index.html.erb</p>
+<h1 class="title is-3 ml-3">All Cards</h1>
+
+<form action="<%= cards_path %>" method="get" class="mb-5 ml-3">
+  <div class="field is-grouped is-grouped-multiline">
+
+    <!-- Filter by Name... -->
+    <div class="control">
+      <input class="input" type="text" name="name" placeholder="Search by name" value="<%= params[:name] %>">
+    </div>
+
+    <div class="control">
+      <div class="select">
+        <select name="attack_id">
+          <option value="">All Attacks</option>
+          <% Attack.distinct.pluck(:name).each do |attack_name| %>
+            <option value="<%= attack_name %>" 
+              <%= 'selected' if params[:attack_id] == attack_name %>>
+              <%= attack_name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <!-- ...CardSet -->
+    <div class="control">
+      <div class="select">
+        <select name="card_set_id">
+          <option value="">All Sets</option>
+          <% CardSet.all.each do |s| %>
+            <option value="<%= s.id %>" 
+              <%= 'selected' if params[:card_set_id].to_s == s.id.to_s %>>
+              <%= s.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <!-- ...Series -->
+    <div class="control">
+      <div class="select">
+        <select name="series">
+          <option value="">All Series</option>
+          <% CardSet.distinct.pluck(:series).each do |series| %>
+            <option value="<%= series %>" 
+              <%= 'selected' if params[:series] == series %>>
+              <%= series %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <!-- ...Rarity -->
+    <div class="control">
+      <div class="select">
+        <select name="rarity_id">
+          <option value="">All Rarities</option>
+          <% Rarity.all.each do |r| %>
+            <option value="<%= r.id %>" 
+              <%= 'selected' if params[:rarity_id].to_s == r.id.to_s %>>
+              <%= r.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <!-- ...Pokemon Type -->
+    <div class="control">
+      <div class="select">
+        <select name="pokemon_type_id">
+          <option value="">All Types</option>
+          <% PokemonType.all.each do |t| %>
+            <option value="<%= t.id %>" 
+              <%= 'selected' if params[:pokemon_type_id].to_s == t.id.to_s %>>
+              <%= t.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <!-- ...Supertype -->
+    <div class="control">
+      <div class="select">
+        <select name="supertype_id">
+          <option value="">All Supertypes</option>
+          <% Supertype.all.each do |st| %>
+            <option value="<%= st.id %>" 
+              <%= 'selected' if params[:supertype_id].to_s == st.id.to_s %>>
+              <%= st.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <!-- ...Alphabetical Order -->
+    <div class="control">
+      <div class="select">
+        <select name="sort">
+          <option value="name_asc" <%= 'selected' if params[:sort] == 'name_asc' %>>A → Z</option>
+          <option value="name_desc" <%= 'selected' if params[:sort] == 'name_desc' %>>Z → A</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Submit button -->
+    <div class="control">
+      <button class="button is-primary">Filter</button>
+    </div>
+  </div>
+</form>
+
+<%= turbo_frame_tag "random_cards" do %>
+  <div class="columns is-multiline mb-2 mx-2">
+    <% @cards.each do |card| %>
+      <div class="column is-one-quarter">
+        <%= link_to card_path(card), data: { turbo: false } do %>
+          <div class="card">
+            <% if card.image_url.present? %>
+              <div class="card-image">
+                <figure class="image" style="display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                  <%= image_tag card.image_url.image_url, alt: card.name, style: "object-fit: contain; max-width: 100%; max-height: 100%;" %>
+                </figure>
+              </div>
+            <% end %>
+            <div class="card-content has-text-centered">
+              <p class="title is-6"><%= card.name %></p>
+              <p class="subtitle is-7"><%= card.card_set.name if card.card_set %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+  <% if @cards.prev_page %>
+    <%= link_to "&laquo; Previous".html_safe, cards_path(page: @cards.prev_page, **params.permit(:name, :card_set_id, :series, :rarity_id, :pokemon_type_id, :supertype_id).to_h), class: "pagination-previous" %>
+  <% else %>
+    <a class="pagination-previous" disabled>&laquo; Previous</a>
+  <% end %>
+
+  <% if @cards.next_page %>
+    <%= link_to "Next &raquo;".html_safe, cards_path(page: @cards.next_page, **params.permit(:name, :card_set_id, :series, :rarity_id, :pokemon_type_id, :supertype_id).to_h), class: "pagination-next" %>
+  <% else %>
+    <a class="pagination-next" disabled>Next &raquo;</a>
+  <% end %>
+
+  <ul class="pagination-list">
+    <% window_size = 3 %>
+    <% start_page = [@cards.current_page - window_size, 1].max %>
+    <% end_page = [@cards.current_page + window_size, @cards.total_pages].min %>
+
+    <% (start_page..end_page).each do |page_number| %>
+      <li>
+        <% if page_number == @cards.current_page %>
+          <a class="pagination-link is-current"><%= page_number %></a>
+        <% else %>
+          <%= link_to page_number, cards_path(page: page_number, **params.permit(:name, :card_set_id, :series, :rarity_id, :pokemon_type_id, :supertype_id).to_h), class: "pagination-link" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

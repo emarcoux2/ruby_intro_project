@@ -26,16 +26,16 @@ class CardsController < ApplicationController
 
   # Sorting (A→Z / Z→A)
   @cards = case params[:sort]
-           when "name_asc"
-             @cards.reorder("LOWER(cards.name) ASC")
-           when "name_desc"
-             @cards.reorder("LOWER(cards.name) DESC")
-           else
-             @cards.reorder("cards.id ASC")
-           end
+  when "name_asc"
+    @cards.reorder("LOWER(cards.name) ASC")
+  when "name_desc"
+    @cards.reorder("LOWER(cards.name) DESC")
+  else
+    @cards.reorder("cards.id ASC")
+  end
 
   @cards = @cards.page(params[:page]).per(24)
-end
+  end
 
   def show
     @card = Card.find(params[:id])

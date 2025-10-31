@@ -1,2 +1,26 @@
-<h1>Cards#show</h1>
-<p>Find me in app/views/cards/show.html.erb</p>
+<section class="section">
+  <div class="container has-text-centered">
+
+    <% if @card.image_url.present? %>
+      <figure class="image" style="max-width: 400px; margin: 0 auto;">
+        <%= image_tag @card.image_url.image_url, alt: @card.name, style: "width: 100%; height: auto;" %>
+      </figure>
+    <% end %>
+
+    <h1 class="title is-3 mt-4"><%= @card.name %></h1>
+
+    <% if @card.card_set.present? %>
+      <p class="subtitle is-5 has-text-grey">
+        From <%= link_to @card.card_set.name, card_set_path(@card.card_set), class: "has-text-link" %>
+      </p>
+    <% end %>
+
+    <div class="buttons is-centered mt-4">
+      <%= link_to "Go to All Cards", cards_path, class: "button is-light" %>
+      <% if @card.card_set.present? %>
+        <%= link_to "View Set", card_set_path(@card.card_set), class: "button is-primary" %>
+      <% end %>
+    </div>
+  </div>
+</section>
+

@@ -1,2 +1,55 @@
-<h1>Sets#show</h1>
-<p>Find me in app/views/sets/show.html.erb</p>
+<section class="section">
+  <div class="container has-text-centered">
+
+    <% if @card_set.logo %>
+      <figure class="image is-inline-block" style="max-width: 300px;">
+        <%= image_tag @card_set.logo.image_url, alt: @card_set.name, style: "width: 100%; height: auto;" %>
+      </figure>
+    <% end %>
+
+    <h1 class="title is-3 mt-4"><%= @card_set.name %></h1>
+    <p class="subtitle is-5 has-text-grey"><%= @card_set.series %></p>
+
+    <div class="buttons is-centered mt-4">
+      <%= link_to "Go to All Sets", card_sets_path, class: "button is-light" %>
+    </div>
+
+    <hr>
+    <h2 class="title is-4 mt-5">Cards from this set</h2>
+
+    <% if @cards.any? %>
+      <%= turbo_frame_tag "random_cards" do %>
+        <div class="columns is-multiline">
+            <% @cards.each do |card| %>
+            <div class="column is-one-quarter">
+                <%= link_to card_path(card), data: { turbo: false } do %>
+                <div class="card">
+                    <% if card.image_url.present? %>
+                    <div class="card-image">
+                        <figure class="image" style="display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <%= image_tag card.image_url.image_url, alt: card.name, style: "object-fit: contain; max-width: 100%; max-height: 100%;" %>
+                        </figure>
+                    </div>
+                    <% end %>
+                    <div class="card-content has-text-centered">
+                    <p class="title is-6"><%= card.name %></p>
+                    <p class="subtitle is-7"><%= card.card_set.name if card.card_set %></p>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+
+      <div class="pagination is-centered mt-4">
+        <%= paginate @cards %>
+      </div>
+    <% else %>
+      <p>No cards found for this set.</p>
+    <% end %>
+
+  </div>
+</section>
+
+
