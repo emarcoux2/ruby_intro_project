@@ -1,0 +1,56 @@
+<div class="is-flex is-justify-content-space-between is-align-items-center mb-3 mx-3">
+  <h1 class="title is-3">12 Random Sets</h1>
+  <%= link_to "Generate New Sets", root_path, method: :get, data: { turbo_frame: "random_card_sets" }, class: "button is-primary" %>
+</div>
+
+<%= turbo_frame_tag "random_card_sets" do %>
+  <div class="columns is-multiline mx-2">
+  <% @card_sets.each do |set| %>
+    <div class="column is-one-quarter">
+      <%= link_to card_set_path(set), data: { turbo: false } do %>
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3" style="display: flex; align-items: center; justify-content: center; overflow: hidden;">
+              <%= image_tag set.logo.image_url, alt: set.name, style: "object-fit: contain; max-width: 100%; max-height: 100%;" if set.logo %>
+            </figure>
+          </div>
+          <div class="card-content has-text-centered">
+            <p class="title is-6"><%= set.name %></p>
+            <p class="subtitle is-7"><%= set.series %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+<% end %>
+
+<div class="is-flex is-justify-content-space-between is-align-items-center mb-3 mt-6">
+  <h1 class="title is-3">12 Random Cards</h1>
+  <%= link_to "Generate New Cards", root_path, method: :get, class: "button is-primary" %>
+</div>
+
+<%= turbo_frame_tag "random_cards" do %>
+  <div class="columns is-multiline">
+    <% @cards.each do |card| %>
+      <div class="column is-one-quarter">
+        <%= link_to card_path(card), data: { turbo: false } do %>
+          <div class="card">
+            <% if card.image_url.present? %>
+              <div class="card-image">
+                <figure class="image" style="display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                  <%= image_tag card.image_url.image_url, alt: card.name, style: "object-fit: contain; max-width: 100%; max-height: 100%;" %>
+                </figure>
+              </div>
+            <% end %>
+            <div class="card-content has-text-centered">
+              <p class="title is-6"><%= card.name %></p>
+              <p class="subtitle is-7"><%= card.card_set.name if card.card_set %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

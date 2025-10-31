@@ -47,7 +47,7 @@ class PokemonTcgService
     handle_response(response)
   end
 
-  def get_pokemon_types
+  def get_pokemon_types(page = 1, page_size = 250)
     uri = URI("#{BASE_URL}/types")
     response = make_request(uri)
     handle_response(response)
