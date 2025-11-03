@@ -65,15 +65,15 @@
 
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
   <% if @card_sets.prev_page %>
-    <%= link_to "&laquo; Previous".html_safe, card_sets_path(page: @card_sets.prev_page), class: "pagination-previous" %>
+    <%= link_to "&laquo; Previous".html_safe, card_sets_path(page: @card_sets.prev_page, **params.permit(:name, :card_set_id, :series,).to_h), class: "pagination-previous" %>
   <% else %>
-    <button class="pagination-previous" disabled>&laquo; Previous</button>
+    <a class="pagination-previous" disabled>&laquo; Previous</a>
   <% end %>
 
   <% if @card_sets.next_page %>
-    <%= link_to "Next &raquo;".html_safe, card_sets_path(page: @card_sets.next_page), class: "pagination-next" %>
+    <%= link_to "Next &raquo;".html_safe, card_sets_path(page: @card_sets.next_page, **params.permit(:name, :card_set_id, :series,).to_h), class: "pagination-next" %>
   <% else %>
-    <button class="pagination-next" disabled>Next &raquo;</button>
+    <a class="pagination-next" disabled>Next &raquo;</a>
   <% end %>
 
   <ul class="pagination-list">
@@ -82,7 +82,7 @@
         <% if page_number == @card_sets.current_page %>
           <a class="pagination-link is-current"><%= page_number %></a>
         <% else %>
-          <%= link_to page_number, card_sets_path(page: page_number), class: "pagination-link" %>
+          <%= link_to page_number, card_sets_path(page: page_number, **params.permit(:name, :card_set_id, :series,).to_h), class: "pagination-link" %>
         <% end %>
       </li>
     <% end %>
