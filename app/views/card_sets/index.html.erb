@@ -67,13 +67,13 @@
   <% if @card_sets.prev_page %>
     <%= link_to "&laquo; Previous".html_safe, card_sets_path(page: @card_sets.prev_page), class: "pagination-previous" %>
   <% else %>
-    <a class="pagination-previous" disabled>&laquo; Previous</a>
+    <button class="pagination-previous" disabled>&laquo; Previous</button>
   <% end %>
 
   <% if @card_sets.next_page %>
     <%= link_to "Next &raquo;".html_safe, card_sets_path(page: @card_sets.next_page), class: "pagination-next" %>
   <% else %>
-    <a class="pagination-next" disabled>Next &raquo;</a>
+    <button class="pagination-next" disabled>Next &raquo;</button>
   <% end %>
 
   <ul class="pagination-list">

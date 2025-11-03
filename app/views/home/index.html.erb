@@ -27,7 +27,7 @@
 
 <div class="is-flex is-justify-content-space-between is-align-items-center mb-3 mt-6">
   <h1 class="title is-3">12 Random Cards</h1>
-  <%= link_to "Generate New Cards", root_path, method: :get, class: "button is-primary" %>
+  <%= link_to "Generate New Cards", root_path, method: :get, data: { turbo_frame: "random_cards" }, class: "button is-primary" %>
 </div>
 
 <%= turbo_frame_tag "random_cards" do %>

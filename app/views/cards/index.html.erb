@@ -134,13 +134,13 @@
   <% if @cards.prev_page %>
     <%= link_to "&laquo; Previous".html_safe, cards_path(page: @cards.prev_page, **params.permit(:name, :card_set_id, :series, :rarity_id, :pokemon_type_id, :supertype_id).to_h), class: "pagination-previous" %>
   <% else %>
-    <a class="pagination-previous" disabled>&laquo; Previous</a>
+    <button class="pagination-previous" disabled>&laquo; Previous</button>
   <% end %>
 
   <% if @cards.next_page %>
     <%= link_to "Next &raquo;".html_safe, cards_path(page: @cards.next_page, **params.permit(:name, :card_set_id, :series, :rarity_id, :pokemon_type_id, :supertype_id).to_h), class: "pagination-next" %>
   <% else %>
-    <a class="pagination-next" disabled>Next &raquo;</a>
+    <button class="pagination-next" disabled>Next &raquo;</button>
   <% end %>
 
   <ul class="pagination-list">
